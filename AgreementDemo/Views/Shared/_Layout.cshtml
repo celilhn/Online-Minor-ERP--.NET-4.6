@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- ... -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Fontello CSS -->
+    <link href="~/Content/fonts/fontello/css/fontello.css" rel="stylesheet">
+
+    <!-- Plugins -->
+    <link href="~/Content/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="~/Content/css/animations.css" rel="stylesheet">
+    <link href="~/Content/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/Content/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="~/Content/plugins/hover/hover-min.css" rel="stylesheet">
+
+    <!-- the project core CSS file -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <!-- Color Scheme (In order to change the color scheme, replace the blue.css with the color scheme that you prefer)-->
+    <link href="~/Content/css/skins/light_blue.css" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link href="~/Content/css/custom.css" rel="stylesheet">
+
+    <!-- Datetimepicker -->
+    <link rel="stylesheet" type="text/css" href="~/Content/datetimepicker/jquery.datetimepicker.css" />
+    <script src="~/Content/datetimepicker/jquery.js"></script>
+    <script src="~/Content/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
+    <!-- Datatable -->
+    <link href="~/Content/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/datatables/media/css/jquery.dataTables_themeroller.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="~/Content/plugins/datatables/all.min.js" rel="stylesheet">
+    <link href="~/Content/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Maden Alt Sözleşme", "List", "Agreement", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Liste", "List", "Agreement")</li>
+                    <li>@Html.ActionLink("Kayıt/Güncelleme", "Save", "Agreement")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- JavaScript files placed at the end of the document so the pages load faster -->
+    <!-- ================================================== -->
+    <!-- Jquery and Bootstap core js files -->
+    <script type="text/javascript" src="~/Content/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Modernizr javascript -->
+    <script type="text/javascript" src="~/Content/plugins/modernizr.js"></script>
+
+    <!-- Magnific Popup javascript -->
+    <script type="text/javascript" src="~/Content/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Appear javascript -->
+    <script type="text/javascript" src="~/Content/plugins/waypoints/jquery.waypoints.min.js"></script>
+
+    <!-- Count To javascript -->
+    <script type="text/javascript" src="~/Content/plugins/jquery.countTo.js"></script>
+
+    <!-- Parallax javascript -->
+    <script src="~/Content/plugins/jquery.parallax-1.1.3.js"></script>
+
+    <!-- Contact form -->
+    <script src="~/Content/plugins/jquery.validate.js"></script>
+
+    <!-- Owl carousel javascript -->
+    <script type="text/javascript" src="~/Content/plugins/owl-carousel/owl.carousel.js"></script>
+
+    <!-- SmoothScroll javascript -->
+    <script type="text/javascript" src="~/Content/plugins/jquery.browser.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/SmoothScroll.js"></script>
+
+    <!-- Initialization of Plugins -->
+    <script type="text/javascript" src="~/Content/js/template.js"></script>
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src="~/Content/js/custom.js"></script>
+
+    <script type="text/javascript" src="~/Content/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+</body>
+</html>

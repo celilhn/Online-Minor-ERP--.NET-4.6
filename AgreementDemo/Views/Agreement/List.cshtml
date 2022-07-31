@@ -1,0 +1,85 @@
+﻿@model List<Domain.Models.Agreement>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<div class="main col-md-12">
+
+    <!-- page-title start -->
+    <!-- ================ -->
+    <h1 class="page-title">Maden Alt Sözleşme Listesi</h1>
+    <div class="separator-2"></div>
+    <!-- page-title end -->
+
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <table id="example" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Sözleşme Türü </th>
+                    <th>Sözleşme Durumu </th>
+                    <th>Sicil No</th>
+                    <th>Sözleşme No </th>
+                    <th>Sözleşme Unvan/Ad-Soyad</th>
+                    <th>Sözleşmeci TX/Vergi Kimlik No</th>
+                    <th>Başlangıç Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                    <th>Maden Grubu</th>
+                    <th>Saha Madenleri</th>
+                    <th>İşlem</th>
+                    <th>Açıklama</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Domain.Models.Agreement agreement in Model)
+                {
+                    <tr class="remove-data">
+                        <td>
+                            @if(agreement.AgreementType == 0)
+                            {
+                                <p>Kamu İştirakli</p>
+                            }
+                            else if(agreement.AgreementType == 1)
+                            {
+                                <p>Devlet İştirakli</p>
+                            }
+                        </td>
+                        <td>
+                            @if (agreement.ProcessStatus == 0)
+                            {
+                                <p>Başlamadı</p>
+                            }
+                            else if (agreement.ProcessStatus == 1)
+                            {
+                                <p>NormalYürüyor</p>
+                            }
+                            else if (agreement.ProcessStatus == 2)
+                            {
+                                <p>Bitti</p>
+                            }
+                        </td>
+                        <td>@agreement.RecordNumber </td>
+                        <td>@agreement.AgreementID</td>
+                        <td>@agreement.Name </td>
+                        <td>@agreement.IdentityNumber </td>
+                        <td>@agreement.StratDate.ToString("MM/dd/yyyy") </td>
+                        <td>@agreement.EndDate.ToString("MM/dd/yyyy") </td>
+                        <td> </td>
+                        <td> </td>
+                        <td><a href="~/Agreement/Save?Id=@agreement.AgreementID"><i class="fa fa-flickr"></i></a></td>
+                        <td>@agreement.Description </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

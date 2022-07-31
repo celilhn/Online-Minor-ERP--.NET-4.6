@@ -1,0 +1,438 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+@if (ViewBag.MessageType == Domain.Constant.Constants.MessageTypes.Error)
+{
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Hata!</strong> @ViewBag.Message
+    </div> 
+}
+else if (ViewBag.MessageType == Domain.Constant.Constants.MessageTypes.Success)
+{
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        @ViewBag.Message
+    </div>
+}
+
+@if (ViewBag.Action == Domain.Constant.Constants.Actions.Create)
+{
+    using (var lForm = Html.BeginForm("Save", "Agreement", FormMethod.Post, new { @enctype = "multipart/form*data" }))
+    {
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 id="header">Maden Alt Sözleşme Ekleme İşlemi</h2>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Sicil Numarası <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="RecordNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Talep Numarası <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="RequestNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">TC Kimlik/Vergi Kimlik No <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="IdentityNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Gelen Evrak tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="ingoingDocumentDateDatetimepicker" name="IngoingDocumentDate" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Unvan/Ad-Soyad <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Gelen Evrak Sayısı <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="IngoingDocumentNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Başlangıç Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="StratDateDatetimepicker" name="StratDate" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Olur Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="HappensDateTimeDatetimepicker" name="HappensDateTime" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Bitiş Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="EndDateDatetimepicker" name="EndDate" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Olur Sayısı <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="HappensCount" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Durumu <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("ProcessStatus", (IEnumerable<SelectListItem>)ViewBag.ProcessStatusList, "Lütfen Seçiniz", htmlAttributes: new { @class = "form-control select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Dosya Yükle <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" name="FileUrl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 col-md-3 col-lg-3 control-label">Sözleşme Türü <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("AgreementType", (IEnumerable<SelectListItem>)ViewBag.AgreementTypesList, "Lütfen Seçiniz", htmlAttributes: new { @class = "form-control select2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Açıklama <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <textarea name="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-9 col-lg-9 col-sm-9"></div>
+                    <div class="col-sm-3 col-lg-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-3">
+                                <button type="submit" class="btn btn-group btn-default btn-animated">Kaydet/Güncelle <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (ViewBag.Action == Domain.Constant.Constants.Actions.Update)
+{
+    using (var lForm = Html.BeginForm("Save", "Agreement", FormMethod.Post, new { @enctype = "multipart/form*data" }))
+    {
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 id="header">Maden Alt Sözleşme Güncelleme İşlemi</h2>
+            </div>
+            <div class="card-body">
+                <div class="row" hidden>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="AgreementID" value="@ViewBag.Model.AgreementID" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Sicil Numarası <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="RecordNumber" value="@ViewBag.Model.RecordNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Talep Numarası <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="RequestNumber" value="@ViewBag.Model.RecordNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">TC Kimlik/Vergi Kimlik No <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="IdentityNumber" value="@ViewBag.Model.IdentityNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Gelen Evrak tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="ingoingDocumentDateDatetimepicker" name="IngoingDocumentDate" type="text" value="@ViewBag.Model.IngoingDocumentDate" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Unvan/Ad-Soyad <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="Name" value="@ViewBag.Model.Name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Gelen Evrak Sayısı <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="IngoingDocumentNumber" value="@ViewBag.Model.IngoingDocumentNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Başlangıç Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="StratDateDatetimepicker" name="StratDate" type="text" value="@ViewBag.Model.StratDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Olur Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="HappensDateTimeDatetimepicker" name="HappensDateTime" type="text" value="@ViewBag.Model.HappensDateTime" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Bitiş Tarihi <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input id="EndDateDatetimepicker" name="EndDate" type="text" value="@ViewBag.Model.EndDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Olur Sayısı <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="HappensCount" value="@ViewBag.Model.HappensCount" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Durumu <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("ProcessStatus", (IEnumerable<SelectListItem>)ViewBag.ProcessStatusList, "Lütfen Seçiniz", htmlAttributes: new { @class = "form-control select2", value = @ViewBag.Model.ProcessStatus })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Dosya Yükle <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" name="FileUrl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 col-md-3 col-lg-3 control-label">Sözleşme Türü <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("AgreementType", (IEnumerable<SelectListItem>)ViewBag.AgreementTypesList, "Lütfen Seçiniz", htmlAttributes: new { @class = "form-control select2", value = @ViewBag.Model.ProcessStatus })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+                        <div class="form-group has-feedback">
+                            <label for="inputName" class="col-sm-3 control-label">Açıklama <span class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <textarea name="Description">@ViewBag.Model.Description</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-sm-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-9 col-lg-9 col-sm-9"></div>
+                    <div class="col-sm-3 col-lg-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-3">
+                                <button type="submit" class="btn btn-group btn-default btn-animated">Kaydet/Güncelle <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<style>
+
+    .card {
+        background-color: #f1f1f1;
+        border-block-color: inherit;
+        border-bottom-color: antiquewhite;
+        border-block-width: initial;
+        border: solid;
+        border-radius: 15px;
+    }
+
+    #header {
+        color: white;
+    }
+
+    .card-header {
+        background-color: #5353ff;
+    }
+
+</style>
+
+<script>
+    var actionType = @Html.Raw(Json.Encode(ViewBag.Action));
+    if (actionType == 2) {
+        $('#AgreementType').val($('#AgreementType').attr('Value'))
+        $('#ProcessStatus').val($('#ProcessStatus').attr('Value'))
+    }
+
+    createDatePicker('ingoingDocumentDateDatetimepicker');
+    createDatePicker('StratDateDatetimepicker');
+    createDatePicker('HappensDateTimeDatetimepicker');
+    createDatePicker('EndDateDatetimepicker');
+
+    function createDatePicker(Id) {
+        jQuery.datetimepicker.setLocale('tr');
+        jQuery('#' + Id).datetimepicker({
+            i18n: {
+                tr: {
+                    months: [
+                        'Ocak', 'Şubat', 'Mart', 'Nisan',
+                        'Mayıs', 'Haziran', 'Temmuz', 'Ağustos',
+                        'Eylül', 'Ekim', 'Kasım', 'Aralık'
+                    ],
+                    dayOfWeek: [
+                        "Pzt", "Sal", "Çar", "Per",
+                        "Cum", "Cmt", "Pz"
+                    ]
+                }
+            },
+            timepicker: false,
+            mask: true,
+            maxDate: '+2050/01/2',
+        });
+
+        controlDate(Id);
+    }
+
+    function controlDate(id) {
+        if ($('#' + id).attr('value') != undefined) {
+            var newDate = splitDate($('#' + id).attr('value'));
+            $('#' + id).val(newDate);
+        }
+    }
+
+    function splitDate(date) {
+        var daysAndHours = date.split(' ');
+        var days = daysAndHours[0].split('.');
+        var hours = daysAndHours[1].split(':');
+        date = days[2] + '/' + days[1] + '/' + days[0] + ' ' + hours[0] + ':' + hours[1]
+        return date;
+    }
+</script>
